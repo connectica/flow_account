@@ -1,12 +1,19 @@
+require 'faraday'
+require File.expand_path('../version', __FILE__)
+
+
 module FlowAccount
   module Configuration
 
     DEFAULT_ACCESS_TOKEN = nil
     DEFAULT_CLIENT_ID = nil
     DEFAULT_CLIENT_SECRET = nil
+    DEFAULT_SCOPE = nil
     DEFAULT_USER_AGENT = "Flow Account Ruby Gem #{FlowAccount::VERSION}".freeze
     DEFAULT_FORMAT = :json
     DEFAULT_LOUD_LOGGER = true # TODO: use nil for deploy
+    DEFAULT_SIGN_REQUESTS = false
+    DEFAULT_CONNECTION_OPTIONS = {}
 
     # The adapter that will be used to connect if none is set
     #
@@ -21,10 +28,14 @@ module FlowAccount
       :access_token,
       :client_id,
       :client_secret,
+      :scope,
+      :endpoint,
       :user_agent,
+      :connection_options,
       :format,
       :loud_logger,
-      :adapter
+      :adapter,
+      :sign_requests
     ]
 
     attr_accessor *VALID_OPTIONS_KEYS
@@ -47,10 +58,14 @@ module FlowAccount
       self.access_token       = DEFAULT_ACCESS_TOKEN
       self.client_id          = DEFAULT_CLIENT_ID
       self.client_secret      = DEFAULT_CLIENT_SECRET
+      self.scope              = DEFAULT_SCOPE
       self.user_agent         = DEFAULT_USER_AGENT
       self.format             = DEFAULT_FORMAT
       self.loud_logger        = DEFAULT_LOUD_LOGGER
       self.adapter            = DEFAULT_ADAPTER
+      self.sign_requests      = DEFAULT_SIGN_REQUESTS
+      self.endpoint           = DEFAULT_ENDPOINT
+      self.connection_options = DEFAULT_CONNECTION_OPTIONS
     end
   end
 end

@@ -1,6 +1,6 @@
 require File.expand_path('../connection', __FILE__)
 require File.expand_path('../request', __FILE__)
-# require File.expand_path('../oauth', __FILE__)
+require File.expand_path('../auth', __FILE__)
 
 module FlowAccount
   class API
@@ -23,5 +23,6 @@ module FlowAccount
 
     include Connection
     include Request
+    include Auth
   end
 end
