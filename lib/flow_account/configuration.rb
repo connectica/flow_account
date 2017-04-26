@@ -16,5 +16,9 @@ module FlowAccount
         options.merge!(key => send(key))
       end
     end
+
+    def configure
+      yield self
+    end
   end
 end
