@@ -16,5 +16,8 @@ module FlowAccount
       end
       conf
     end
+
+    include Connection
+    include Request
   end
 end
