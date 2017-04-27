@@ -8,11 +8,12 @@ module FlowAccount
     DEFAULT_ACCESS_TOKEN = nil
     DEFAULT_CLIENT_ID = nil
     DEFAULT_CLIENT_SECRET = nil
-    DEFAULT_SCOPE = nil
+    DEFAULT_SCOPE = 'flowaccount-api'
     DEFAULT_USER_AGENT = "Flow Account Ruby Gem #{FlowAccount::VERSION}".freeze
     DEFAULT_FORMAT = :json
-    DEFAULT_LOUD_LOGGER = true # TODO: use nil for deploy
+    DEFAULT_LOUD_LOGGER = nil
     DEFAULT_SIGN_REQUESTS = false
+    DEFAULT_DEVELOPMENT = nil
     DEFAULT_CONNECTION_OPTIONS = {}
 
     # The adapter that will be used to connect if none is set
@@ -35,7 +36,8 @@ module FlowAccount
       :format,
       :loud_logger,
       :adapter,
-      :sign_requests
+      :sign_requests,
+      :development
     ]
 
     attr_accessor *VALID_OPTIONS_KEYS
@@ -66,6 +68,7 @@ module FlowAccount
       self.sign_requests      = DEFAULT_SIGN_REQUESTS
       self.endpoint           = DEFAULT_ENDPOINT
       self.connection_options = DEFAULT_CONNECTION_OPTIONS
+      self.development        = DEFAULT_DEVELOPMENT
     end
   end
 end

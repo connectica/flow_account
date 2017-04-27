@@ -1,5 +1,6 @@
 require "flow_account/version"
 
+require "flow_account/error"
 require "flow_account/configuration"
 require "flow_account/api"
 require "flow_account/client"

@@ -22,9 +22,13 @@ module FlowAccount
       response = connection(raw).send(method) do |request|
         path = formatted_path(path) unless unformatted
 
+        if development
+          path = "/dev" + path
+        end
+
         # if signed
 
-        case :method
+        case method
         when :get, :delete
           request.url(URI.encode(path), options)
         when :post, :put
