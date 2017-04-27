@@ -39,7 +39,7 @@ module FlowAccount
 
       return response if raw
       return response.body if no_response_wrapper
-      return response
+      return Response.create(response.body)
     end
 
   end

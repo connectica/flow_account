@@ -4,6 +4,7 @@ require "flow_account/error"
 require "flow_account/configuration"
 require "flow_account/api"
 require "flow_account/client"
+require "flow_account/response"
 
 module FlowAccount
   extend Configuration
