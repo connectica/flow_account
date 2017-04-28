@@ -16,6 +16,9 @@ module FlowAccount
     DEFAULT_DEVELOPMENT = nil
     DEFAULT_CONNECTION_OPTIONS = {}
 
+    # By default, don't wrap responses with meta data (i.e. pagination)
+    DEFAULT_NO_RESPONSE_WRAPPER = false
+
     # The adapter that will be used to connect if none is set
     #
     # @note The default faraday adapter is Net::HTTP.
@@ -23,7 +26,8 @@ module FlowAccount
 
 
 
-    DEFAULT_ENDPOINT = 'https://qyedkbf6yd.execute-api.ap-southeast-1.amazonaws.com/dev/'.freeze
+    DEFAULT_ENDPOINT = 'https://qyedkbf6yd.execute-api.ap-southeast-1.amazonaws.com/'.freeze
+    # DEFAULT_ENDPOINT = 'http://localhost:3000/'.freeze
 
     VALID_OPTIONS_KEYS = [
       :access_token,
@@ -36,6 +40,7 @@ module FlowAccount
       :format,
       :loud_logger,
       :adapter,
+      :no_response_wrapper,
       :sign_requests,
       :development
     ]
@@ -69,6 +74,7 @@ module FlowAccount
       self.endpoint           = DEFAULT_ENDPOINT
       self.connection_options = DEFAULT_CONNECTION_OPTIONS
       self.development        = DEFAULT_DEVELOPMENT
+      self.no_response_wrapper= DEFAULT_NO_RESPONSE_WRAPPER
     end
   end
 end

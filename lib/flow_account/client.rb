@@ -1,5 +1,7 @@
 module FlowAccount
   class Client < API
-    #code
+    Dir[File.expand_path('../client/*.rb', __FILE__)].each{|f| require f}
+
+    include FlowAccount::Client::TaxInvoice
   end
 end
