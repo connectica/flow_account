@@ -36,10 +36,9 @@ module FlowAccount
           request.headers['Content-Type'] = "application/json"
         end
       end
-
       return response if raw
       return response.body if no_response_wrapper
-      return Response.create(response.body)
+      return Response.new(response)
     end
 
   end
