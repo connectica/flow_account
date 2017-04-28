@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'flow_account/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "flow_account"
+  spec.name          = "flow_account_ruby"
   spec.version       = FlowAccount::VERSION
   spec.authors       = ["Chirag Rajkarnikar"]
   spec.email         = ["chiragrajk@gmail.com"]
