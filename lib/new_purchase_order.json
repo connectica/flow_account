@@ -1,0 +1,47 @@
+{
+    "invoiceName": "Create Pruchase Order",
+    "reference": "reference Purchase oreder",
+    "publishedOn": "2017-02-14T00:00:00Z",
+    "CreditDays": 0,
+    "DueDate": "2017-02-14T00:00:00Z",
+    "Status": 1,
+    "IsVat": "true",
+    "vATRate": "7",
+    "IsDicountAsPercentage": false,
+    "Discount": 0.00,
+    "DiscountPercentage": 0.00,
+    "Remarks": "remark Purchase oreder",
+    "InternalNotes":"Test internal note",
+    "ClientName": "flowaccount Purchase oreder",
+    "ClientAddress": "155",
+    "ClientAddressLine2": "dfdf2",
+    "ClientAddressLine3": "dfdf3",
+    "ClientTaxId": "12345-66666-777",
+    "ClientBranch": "branch name",
+    "ContactNumber": "0911111111",
+    "ContactPerson": "kriangsak_tak",
+    "ContactEmail": "public-api-uteeni@flowaccount.com",
+    "salesName": "public-api-uteeni@flowaccount.com",
+    "Total": 102.72,
+    "ProductItems": [{
+            "Name": "product Purchase oreder -1",
+            "PricePerUnit": 30.00,
+            "Quantity": 1.00,
+            "Description": "description product 1 Purchase oreder",
+            "Barcode": "barcode-*859",
+            "Productcode": "sku-11111",
+            "No": 0,
+            "Type": 3
+        },
+        {
+            "Name": "product Purchase oreder -2",
+            "PricePerUnit": 15.00,
+            "Quantity": 10.00,
+            "Description": "description product 2 Purchase oreder",
+            "Barcode": "77-658s5df",
+            "Productcode": "sku-0000001",
+            "No": 1,
+            "Type": 3
+        }
+    ]
+}
