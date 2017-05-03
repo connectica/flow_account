@@ -12,7 +12,6 @@ module FlowAccount
     DEFAULT_USER_AGENT = "Flow Account Ruby Gem #{FlowAccount::VERSION}".freeze
     DEFAULT_FORMAT = :json
     DEFAULT_LOUD_LOGGER = nil
-    DEFAULT_SIGN_REQUESTS = false
     DEFAULT_DEVELOPMENT = nil
     DEFAULT_CONNECTION_OPTIONS = {}
 
@@ -41,7 +40,6 @@ module FlowAccount
       :loud_logger,
       :adapter,
       :no_response_wrapper,
-      :sign_requests,
       :development
     ]
 
@@ -70,7 +68,6 @@ module FlowAccount
       self.format             = DEFAULT_FORMAT
       self.loud_logger        = DEFAULT_LOUD_LOGGER
       self.adapter            = DEFAULT_ADAPTER
-      self.sign_requests      = DEFAULT_SIGN_REQUESTS
       self.endpoint           = DEFAULT_ENDPOINT
       self.connection_options = DEFAULT_CONNECTION_OPTIONS
       self.development        = DEFAULT_DEVELOPMENT
