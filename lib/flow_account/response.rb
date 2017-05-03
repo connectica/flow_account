@@ -7,10 +7,11 @@ module FlowAccount
     #
     #   data
     # end
-    attr_accessor :response, :data, :result
+    attr_accessor :response, :data, :result, :status
     def initialize(response)
       @response = response
       @data = response.body
+      @status = @data['status']
     end
   end
 end
