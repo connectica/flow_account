@@ -20,7 +20,6 @@ module FlowAccount
     private
     def request(method, path, options, signature=false, raw=false, unformatted=false, no_response_wrapper=false, signed=sign_requests)
       response = connection(raw).send(method) do |request|
-
         if development
           path = "/dev" + path
         end
@@ -30,10 +29,6 @@ module FlowAccount
         when :post, :put
           request.path = URI.encode(path)
           request.body = options unless options.empty?
-        end
-        if signature
-          request.headers['Authorization'] = "Bearer " + access_token
-          request.headers['Content-Type'] = "application/json"
         end
       end
       return response if raw

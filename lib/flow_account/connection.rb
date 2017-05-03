@@ -12,6 +12,7 @@ module FlowAccount
       }.merge(connection_options)
 
       Faraday::Connection.new(options) do |connection|
+        connection.use FaradayMiddleware::FlowAccountOAuth2, client_id, access_token
         connection.use Faraday::Request::UrlEncoded
         connection.use FaradayMiddleware::Mashify unless raw
         unless raw
