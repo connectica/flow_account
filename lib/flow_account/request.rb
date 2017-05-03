@@ -2,19 +2,19 @@ module FlowAccount
   module Request
 
     def post(path, options={}, raw=false, no_response_wrapper=no_response_wrapper())
-      request(:post, path, options, signature, raw, unformatted, no_response_wrapper, signed)
+      request(:post, path, options, raw, no_response_wrapper)
     end
 
     def get(path, options={}, raw=false, no_response_wrapper=no_response_wrapper())
-      request(:get, path, options, signature, raw, unformatted, no_response_wrapper, signed)
+      request(:get, path, options, raw, no_response_wrapper)
     end
 
     def put(path, options={}, raw=false, no_response_wrapper=no_response_wrapper())
-      request(:put, path, options, signature, raw, unformatted, no_response_wrapper, signed)
+      request(:put, path, options, raw, no_response_wrapper)
     end
 
     def delete(path, options={}, raw=false, no_response_wrapper=no_response_wrapper())
-      request(:delete, path, options, signature, raw, unformatted, no_response_wrapper, signed)
+      request(:delete, path, options, raw, no_response_wrapper)
     end
 
     private

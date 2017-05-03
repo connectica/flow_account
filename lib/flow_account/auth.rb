@@ -5,7 +5,7 @@ module FlowAccount
       options[:scope] ||= scope if !scope.nil? && !scope.empty?
 
       params = access_token_params.merge(options)
-      post("/token", params, signature=false, raw=false, unformatted=true, no_response_wrapper=true)
+      post("/token", params, raw=false, no_response_wrapper=true)
     end
 
     private

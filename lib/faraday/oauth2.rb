@@ -1,4 +1,5 @@
 require 'faraday'
+require 'json'
 
 module FaradayMiddleware
   class FlowAccountOAuth2 < Faraday::Middleware
@@ -11,18 +12,15 @@ module FaradayMiddleware
         end
 
         if @access_token and not query["client_secret"]
-          env[:url].query = Faraday::Utils.build_query(query.merge(access_token: @access_token))
           env[:request_headers] = env[:request_headers].merge("Authorization" => "Bearer #{@access_token}")
-        elsif
-          env[:url].query = Faraday::Utils.build_query(query.merge(client_id: @client_id))
         end
-      else
-        if @access_token and not env[:body] && env[:body][:client_secret]
+      else # :POST, :PUT
+        if @access_token and not env[:body] && JSON.parse(env[:body])["client_secret"]
           env[:body] = {} if env[:body].nil?
-          env[:body] = env[:body].merge(access_token: access_token)
-          env[:request_headers] = env[:request_headers].merge("Authorization" => "Bearer " + @access_token)
-        elsif
-          env[:body] = env[:body].merge(client_id: @client_id)
+          env[:request_headers] = env[:request_headers].merge(
+            "Authorization" => "Bearer " + @access_token,
+            "Content-Type" => "application/json"
+            )
         end
       end
 
