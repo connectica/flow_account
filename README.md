@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install flow_account
+    $ gem install flow_account_ruby
 
 ## Usage
 

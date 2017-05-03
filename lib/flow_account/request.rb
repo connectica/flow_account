@@ -1,24 +1,24 @@
 module FlowAccount
   module Request
 
-    def post(path, options={}, signature=false, raw=false, unformatted=false, no_response_wrapper=no_response_wrapper(), signed=sign_requests)
+    def post(path, options={}, raw=false, no_response_wrapper=no_response_wrapper())
       request(:post, path, options, signature, raw, unformatted, no_response_wrapper, signed)
     end
 
-    def get(path, options={}, signature=false, raw=false, unformatted=false, no_response_wrapper=no_response_wrapper(), signed=sign_requests)
+    def get(path, options={}, raw=false, no_response_wrapper=no_response_wrapper())
       request(:get, path, options, signature, raw, unformatted, no_response_wrapper, signed)
     end
 
-    def put(path, options={}, signature=false, raw=false, unformatted=false, no_response_wrapper=no_response_wrapper(), signed=sign_requests)
+    def put(path, options={}, raw=false, no_response_wrapper=no_response_wrapper())
       request(:put, path, options, signature, raw, unformatted, no_response_wrapper, signed)
     end
 
-    def delete(path, options={}, signature=false, raw=false, unformatted=false, no_response_wrapper=no_response_wrapper(), signed=sign_requests)
+    def delete(path, options={}, raw=false, no_response_wrapper=no_response_wrapper())
       request(:delete, path, options, signature, raw, unformatted, no_response_wrapper, signed)
     end
 
     private
-    def request(method, path, options, signature=false, raw=false, unformatted=false, no_response_wrapper=false, signed=sign_requests)
+    def request(method, path, options, raw=false, no_response_wrapper=false)
       response = connection(raw).send(method) do |request|
         if development
           path = "/dev" + path
