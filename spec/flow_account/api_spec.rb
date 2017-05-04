@@ -40,6 +40,7 @@ describe FlowAccount::API do
           connection_options: { :ssl => { :verify => true } },
           format: :json,
           no_response_wrapper: true,
+          redirect_uri: 'http://localhost:4321/oauth/callback',
           development: true
         }
       end
@@ -93,14 +94,25 @@ describe FlowAccount::API do
     end
   end
 
-  # describe ".authorize_url" do
-  #   params = {client_id: 'CID', client_secret: 'CS'}
-  #
-  #   client = FlowAccount::Clien.new(params)
-  #
-  #   redirect
-  #
-  # end
+  describe ".authorize_url" do
+    it "should generate an authorize URL with necessary params" do
+      params = {client_id: 'CID', client_secret: 'CS'}
+      client = FlowAccount::Client.new(params)
+      redirect_uri = "http://localhost:1234/oauth/callback"
+
+      url = client.authorize_url(redirect_uri: redirect_uri)
+
+      options = {
+        redirect_uri: redirect_uri
+      }
+      params2 = client.send(:authorization_params).merge(options)
+      url2 = client.send(:connection).build_url("/token", params2).to_s
+
+      expect(url2).to eql(url)
+    end
+    # expect(url).not_to include("client_secret")
+
+  end
 
 
 end
