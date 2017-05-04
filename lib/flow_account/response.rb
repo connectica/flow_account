@@ -1,17 +1,10 @@
 module FlowAccount
-  class Response
-    # def self.create(response_hash)
-    #   data = response_hash.data.dup rescue response_hash
-    #   data.extend(self)
-    #
-    #
-    #   data
-    # end
-    attr_accessor :response, :data, :result, :status
-    def initialize(response)
-      @response = response
-      @data = response.body
-      @status = @data['status']
+  module Response
+    def self.create(response_hash)
+      result = response_hash.result.dup rescue response_hash
+      result.extend(self)
+
+      result
     end
   end
 end

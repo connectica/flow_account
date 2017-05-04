@@ -19,6 +19,37 @@ RSpec.configure do |config|
   config.include WebMock::API
 end
 
+def a_delete(path)
+  a_request(:delete, FlowAccount.endpoint + path)
+end
+
+def a_get(path)
+  a_request(:get, FlowAccount.endpoint + path)
+end
+
+def a_post(path)
+  a_request(:post, FlowAccount.endpoint + path)
+end
+
+def a_put(path)
+  a_request(:put, FlowAccount.endpoint + path)
+end
+
+def stub_delete(path)
+  stub_request(:delete, FlowAccount.endpoint + path)
+end
+
+def stub_get(path)
+  stub_request(:get, FlowAccount.endpoint + path)
+end
+
+def stub_post(path)
+  stub_request(:post, FlowAccount.endpoint + path)
+end
+
+def stub_put(path)
+  stub_request(:put, FlowAccount.endpoint + path)
+end
 
 def fixture_path
   File.expand_path("../fixtures", __FILE__)
