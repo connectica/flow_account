@@ -20,9 +20,6 @@ module FlowAccount
     private
     def request(method, path, options, raw=false, no_response_wrapper=false)
       response = connection(raw).send(method) do |request|
-        if development
-          path = "/dev" + path
-        end
         case method
         when :get, :delete
           request.url(URI.encode(path), options)

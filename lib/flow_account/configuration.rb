@@ -12,7 +12,6 @@ module FlowAccount
     DEFAULT_USER_AGENT = "Flow Account Ruby Gem #{FlowAccount::VERSION}".freeze
     DEFAULT_FORMAT = :json
     DEFAULT_LOUD_LOGGER = nil
-    DEFAULT_DEVELOPMENT = nil
     DEFAULT_CONNECTION_OPTIONS = {}
 
     # By default, don't wrap responses with meta data (i.e. pagination)
@@ -23,9 +22,7 @@ module FlowAccount
     # @note The default faraday adapter is Net::HTTP.
     DEFAULT_ADAPTER = Faraday.default_adapter
 
-
-
-    DEFAULT_ENDPOINT = 'https://qyedkbf6yd.execute-api.ap-southeast-1.amazonaws.com/'.freeze
+    DEFAULT_ENDPOINT = 'https://qyedkbf6yd.execute-api.ap-southeast-1.amazonaws.com/dev/'.freeze
     # DEFAULT_ENDPOINT = 'http://localhost:3000/'.freeze
 
     VALID_OPTIONS_KEYS = [
@@ -39,8 +36,7 @@ module FlowAccount
       :format,
       :loud_logger,
       :adapter,
-      :no_response_wrapper,
-      :development
+      :no_response_wrapper
     ]
 
     attr_accessor *VALID_OPTIONS_KEYS
@@ -70,7 +66,6 @@ module FlowAccount
       self.adapter            = DEFAULT_ADAPTER
       self.endpoint           = DEFAULT_ENDPOINT
       self.connection_options = DEFAULT_CONNECTION_OPTIONS
-      self.development        = DEFAULT_DEVELOPMENT
       self.no_response_wrapper= DEFAULT_NO_RESPONSE_WRAPPER
     end
   end

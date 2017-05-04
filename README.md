@@ -26,7 +26,6 @@ Or install it yourself as:
 FlowAccount.configure do |config|
   config.client_id = 'a_client_id'
   config.client_secret = 'a_client_secret'
-  config.development = true # for development mode
   config.loud_logger = true # for development logging
 end
 

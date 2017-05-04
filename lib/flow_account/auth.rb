@@ -5,14 +5,14 @@ module FlowAccount
       options[:scope] ||= scope if !scope.nil? && !scope.empty?
 
       params = access_token_params.merge(options)
-      post("/token", params, raw=false, no_response_wrapper=true)
+      post("token", params, raw=false, no_response_wrapper=true)
     end
 
     def authorize_url(options={})
       options[:scope] ||= scope if !scope.nil? && !scope.empty?
 
       params = authorization_params.merge(options)
-      connection.build_url("/token", params).to_s
+      connection.build_url("token", params).to_s
     end
 
     private

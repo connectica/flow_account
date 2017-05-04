@@ -39,8 +39,7 @@ describe FlowAccount::API do
           scope: 'all-api',
           connection_options: { :ssl => { :verify => true } },
           format: :json,
-          no_response_wrapper: true,
-          development: true
+          no_response_wrapper: true
         }
       end
 
@@ -101,7 +100,7 @@ describe FlowAccount::API do
       url = client.authorize_url
 
       params2 = client.send(:authorization_params)
-      url2 = client.send(:connection).build_url("/token", params2).to_s
+      url2 = client.send(:connection).build_url("token", params2).to_s
 
       expect(url2).to eql(url)
     end
@@ -127,7 +126,7 @@ describe FlowAccount::API do
     describe "common functionality" do
       before do
         @client = FlowAccount::Client.new(client_id: 'CID', client_secret: "CS")
-        @url = @client.send(:connection).build_url("/token").to_s
+        @url = @client.send(:connection).build_url("token").to_s
 
         stub_request(:post, @url).
          with(body: {client_id: "CID", client_secret: "CS", grant_type: "client_credentials", scope: "flowaccount-api"}).
