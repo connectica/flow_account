@@ -130,19 +130,23 @@ describe FlowAccount::API do
         @url = @client.send(:connection).build_url("/token").to_s
 
         stub_request(:post, @url).
-         with(body: {client_id: "CID", client_secret: "CS", grant_type: "client_credentials", redirect_uri: "http://localhost:1234/oauth/callback", scope: "flowaccount-api"}).
+         with(body: {client_id: "CID", client_secret: "CS", grant_type: "client_credentials", scope: "flowaccount-api"}).
          to_return(status: 200, body: fixture("access_token.json"), headers: {})
       end
 
       it "should get the correct resource" do
-        @client.get_access_token(redirect_uri: 'http://localhost:1234/oauth/callback')
+        @client.get_access_token
         expect(
           a_request(:post, @url).
-          with(body: {client_id: "CID", client_secret: "CS", grant_type: "client_credentials", redirect_uri: "http://localhost:1234/oauth/callback", scope: "flowaccount-api"})
+            with(body: {client_id: "CID", client_secret: "CS", grant_type: "client_credentials", scope: "flowaccount-api"})
           ).to have_been_made
+      end
+
+      it "should return a hash with an access_token" do
+        response = @client.get_access_token
+        expect(response.access_token).to eql('at')
       end
     end
   end
-
 
 end
