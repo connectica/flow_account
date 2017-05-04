@@ -40,7 +40,6 @@ describe FlowAccount::API do
           connection_options: { :ssl => { :verify => true } },
           format: :json,
           no_response_wrapper: true,
-          redirect_uri: 'http://localhost:4321/oauth/callback',
           development: true
         }
       end
@@ -98,20 +97,51 @@ describe FlowAccount::API do
     it "should generate an authorize URL with necessary params" do
       params = {client_id: 'CID', client_secret: 'CS'}
       client = FlowAccount::Client.new(params)
-      redirect_uri = "http://localhost:1234/oauth/callback"
 
-      url = client.authorize_url(redirect_uri: redirect_uri)
+      url = client.authorize_url
 
-      options = {
-        redirect_uri: redirect_uri
-      }
-      params2 = client.send(:authorization_params).merge(options)
+      params2 = client.send(:authorization_params)
       url2 = client.send(:connection).build_url("/token", params2).to_s
 
       expect(url2).to eql(url)
     end
-    # expect(url).not_to include("client_secret")
 
+    it "should not include client secret in URL params" do
+      params = {client_id: "CID", client_secret: "CS"}
+      client = FlowAccount::Client.new(params)
+      url = client.authorize_url
+      expect(url).to_not include("client_secret")
+    end
+
+    describe "scope params" do
+      it "should include the scope if there is one set" do
+        params = { scope: "comments invoices" }
+        client = FlowAccount::Client.new(params)
+        url = client.authorize_url
+        expect(url).to include("scope")
+      end
+    end
+  end
+
+  describe ".get_access_token" do
+    describe "common functionality" do
+      before do
+        @client = FlowAccount::Client.new(client_id: 'CID', client_secret: "CS")
+        @url = @client.send(:connection).build_url("/token").to_s
+
+        stub_request(:post, @url).
+         with(body: {client_id: "CID", client_secret: "CS", grant_type: "client_credentials", redirect_uri: "http://localhost:1234/oauth/callback", scope: "flowaccount-api"}).
+         to_return(status: 200, body: fixture("access_token.json"), headers: {})
+      end
+
+      it "should get the correct resource" do
+        @client.get_access_token(redirect_uri: 'http://localhost:1234/oauth/callback')
+        expect(
+          a_request(:post, @url).
+          with(body: {client_id: "CID", client_secret: "CS", grant_type: "client_credentials", redirect_uri: "http://localhost:1234/oauth/callback", scope: "flowaccount-api"})
+          ).to have_been_made
+      end
+    end
   end
 
 

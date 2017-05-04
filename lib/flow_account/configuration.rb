@@ -14,7 +14,6 @@ module FlowAccount
     DEFAULT_LOUD_LOGGER = nil
     DEFAULT_DEVELOPMENT = nil
     DEFAULT_CONNECTION_OPTIONS = {}
-    DEFAULT_REDIRECT_URI = nil
 
     # By default, don't wrap responses with meta data (i.e. pagination)
     DEFAULT_NO_RESPONSE_WRAPPER = false
@@ -41,7 +40,6 @@ module FlowAccount
       :loud_logger,
       :adapter,
       :no_response_wrapper,
-      :redirect_uri,
       :development
     ]
 
@@ -65,7 +63,6 @@ module FlowAccount
       self.access_token       = DEFAULT_ACCESS_TOKEN
       self.client_id          = DEFAULT_CLIENT_ID
       self.client_secret      = DEFAULT_CLIENT_SECRET
-      self.redirect_uri       = DEFAULT_REDIRECT_URI
       self.scope              = DEFAULT_SCOPE
       self.user_agent         = DEFAULT_USER_AGENT
       self.format             = DEFAULT_FORMAT
