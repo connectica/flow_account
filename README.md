@@ -31,8 +31,7 @@ end
 
 token = FlowAccount.get_access_token
 client = FlowAccount.client(access_token: token)
-invoice_json = {} # invoice json
-client.create_tax_invoice inv.to_json # convert to json string
+client.tax_invoices # get all tax-invoices
 ```
 
 ## Development
