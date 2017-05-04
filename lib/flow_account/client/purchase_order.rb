@@ -3,7 +3,7 @@ module FlowAccount
     module PurchaseOrder
 
       def create_purchase_order(params)
-        response = post('/purchase-orders', params)
+        response = post('purchase-orders', params)
         response
       end
 
