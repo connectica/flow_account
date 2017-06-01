@@ -129,8 +129,8 @@ describe FlowAccount::API do
         @url = @client.send(:connection).build_url("token").to_s
 
         stub_request(:post, @url).
-         with(body: {client_id: "CID", client_secret: "CS", grant_type: "client_credentials", scope: "flowaccount-api"}).
-         to_return(status: 200, body: fixture("access_token.json"), headers: {})
+        with(body: {client_id: "CID", client_secret: "CS", grant_type: "client_credentials", scope: "flowaccount-api"}).
+        to_return(status: 200, body: fixture("access_token.json"), headers: {})
       end
 
       it "should get the correct resource" do
