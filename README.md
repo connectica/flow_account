@@ -27,7 +27,7 @@ FlowAccount.configure do |config|
   config.loud_logger = true # for development logging
 end
 
-token = FlowAccount.get_access_token
+token = FlowAccount.get_access_token.access_token
 client = FlowAccount.client(access_token: token)
 client.tax_invoices # get all tax-invoices
 ```
