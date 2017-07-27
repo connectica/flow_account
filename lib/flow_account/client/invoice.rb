@@ -6,6 +6,10 @@ module FlowAccount
         post('billing-notes', params)
       end
 
+      def update_invoice(id, params)
+        put("billing-notes/#{id}", params)
+      end
+
       def invoice(id)
         get("billing-notes/#{id}")
       end
