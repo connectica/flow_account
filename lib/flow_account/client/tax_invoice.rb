@@ -6,6 +6,10 @@ module FlowAccount
         post('tax-invoices', params)
       end
 
+      def update_tax_invoice(id, params)
+        put("tax-invoices/#{id}", params)
+      end
+
       def tax_invoice(id)
         get("tax-invoices/#{id}")
       end
